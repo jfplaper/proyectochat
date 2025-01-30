@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Practica de chat - Inicio{% endblock %}
+
+{% block body %}
+    <form action="{{ path('app_chat_new') }}" method="POST">
+        <input type="text" name="text" placeholder="Escribe tu mensaje" />
+        <input type="submit" value="Enviar" />
+    </form>
+    <br>
+
+    <table>
+        <tr>
+            <th>Usuario</th>
+            <th>Mensaje</th>
+            <th>Fecha</th>
+        </tr>
+    {% for chat in chats %}
+        <tr>
+            <td>{{ chat.user.username }}</td>
+            <td>{{ chat.text }}</td>
+            <td>{{ chat.textDate|date("d-m-y h:i") }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
